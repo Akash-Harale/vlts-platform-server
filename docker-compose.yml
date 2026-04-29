@@ -1,0 +1,13 @@
+services:
+  app:
+    build: .
+    container_name: vlts-rbac
+    restart: always
+    ports:
+      - "3006:3006"
+    env_file:
+      - .env
+    volumes:
+      - uploads_path:/data/vlts-uploads
+volumes:
+  uploads_path:
