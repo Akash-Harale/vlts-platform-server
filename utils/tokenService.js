@@ -26,6 +26,7 @@ Keeps your collection lean and self‑maintaining.
 const TokenBlacklist = require('../models/tokenBlacklistModel');
 const jwt = require('jsonwebtoken');
 
+
 /**
  * Blacklist a refresh token (e.g., on logout).
  * Automatically sets expiresAt based on token's exp claim.
