@@ -15,14 +15,14 @@ router.get('/roles',
 
 //  Export roles (Super Admin only)
 router.get('/roles/export',
-  authMiddleware(['manage_roles']),
+  authMiddleware(['read_roles']),
   superAdminOnly,
   roleController.exportRoles
 );
 
 //  Import roles (Super Admin only)
 router.post('/roles/import',
-  authMiddleware(['manage_roles']),
+  authMiddleware(['create_roles']),
   superAdminOnly,
   roleController.importRoles
 );
@@ -35,21 +35,21 @@ router.get('/roles/:id',
 
 //  Create role (Super Admin only)
 router.post('/roles',
-  authMiddleware(['manage_roles']),
+  authMiddleware(['create_roles']),
   superAdminOnly,
   roleController.createRole
 );
 
 //  Update role (Super Admin only)
 router.put('/roles/:id',
-  authMiddleware(['manage_roles']),
+  authMiddleware(['update_roles']),
   superAdminOnly,
   roleController.updateRole
 );
 
 //  Delete role (Super Admin only)
 router.delete('/roles/:id',
-  authMiddleware(['manage_roles']),
+  authMiddleware(['delete_roles']),
   superAdminOnly,
   roleController.deleteRole
 );

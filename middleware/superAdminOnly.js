@@ -14,10 +14,17 @@ async function superAdminOnly(req, res, next) {
 
     console.log('User role: ', req.user.role, '\nPrivileges:', privileges);
 
-    if (!privileges.includes("manage_roles")) {
+    // if (!privileges.includes("manage_roles")) {
+    //   return res.status(403).json({ error: "Forbidden: Super Admin only" });
+    // }
+
+    const rolePrivileges = ["create_roles", "read_roles", "update_roles", "delete_roles"];
+
+    const hasAccess = rolePrivileges.some(p => privileges.includes(p));
+
+    if (!hasAccess) {
       return res.status(403).json({ error: "Forbidden: Super Admin only" });
     }
-
     next();
   } catch (err) {
     next(err);

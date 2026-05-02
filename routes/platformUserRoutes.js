@@ -13,11 +13,11 @@ const {
 const authMiddleware = require('../middleware/authMiddleware');
 
 // Super Admin only
-router.post('/', authMiddleware(["manage_roles"]), createPlatformUser);
-router.get('/', authMiddleware(["manage_roles"]), getPlatformUsers);
-router.get('/:id', authMiddleware(["manage_roles"]), getPlatformUserById);
-router.put('/:id', authMiddleware(["manage_roles"]), updatePlatformUser);
-router.delete('/:id', authMiddleware(["manage_roles"]), deletePlatformUser);
+router.post('/', authMiddleware(["create_roles"]), createPlatformUser);
+router.get('/', authMiddleware(["read_roles"]), getPlatformUsers);
+router.get('/:id', authMiddleware(["read_roles"]), getPlatformUserById);
+router.put('/:id', authMiddleware(["update_roles"]), updatePlatformUser);
+router.delete('/:id', authMiddleware(["delete_roles"]), deletePlatformUser);
 
 module.exports = router;
 

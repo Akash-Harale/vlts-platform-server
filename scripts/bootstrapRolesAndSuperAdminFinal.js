@@ -16,7 +16,9 @@ const logger = require('../utils/logger');
 async function seedRoles() {
   const roles = [
     // System roles
-    { name: "super_admin", privileges: ["create","read","update","delete","provision_tenant","manage_billing","audit_logs","manage_configs","manage_roles"], scope: "system", remarks: "Reserved for vendor/operator; full system control" },
+    { name: "super_admin", privileges: ["create","read","update","delete",
+      "provision_tenant","manage_billing","audit_logs","manage_configs","create_roles","read_roles",
+       "update_roles", "delete_roles"], scope: "system", remarks: "Reserved for vendor/operator; full system control" },
     { name: "system_manager", privileges: ["read","update","monitor_usage","manage_configs"], scope: "system", remarks: "Ops/Tech managers; manage configs and monitor usage" },
     { name: "system_executive", privileges: ["read","create_reports","export_data"], scope: "system", remarks: "Analytics teams; reporting only" },
     { name: "helpdesk", privileges: ["read","impersonate_user"], scope: "system", remarks: "Support role; impersonation must be logged" },
@@ -26,7 +28,7 @@ async function seedRoles() {
     { name: "tenant_admin", privileges: ["create_user","read_user","update_user","delete_user",
       "manage_clients","audit_logs", "create_gps", "update_gps", "read_gps", "delete_gps",
        "create_heartbeat", "map_device_to_vehicle","read_mapped_device_to_vehicle",
-        "update_mapped_device_to_vehicle", "delete_mapped_device_to_vehicle", "create_vehicle",
+        "update_mapped_device_to_vehicle", "delete_mapped_device_to_vehicle","read_roles", "create_vehicle",
       "read_vehicle", "update_vehicle", "delete_vehicle"], scope: "tenant", remarks: "Full control within tenant domain; provisions GPS devices" },
     { name: "tenant_manager", privileges: ["create_client","read_client","update_client","assign_resources"], scope: "tenant", remarks: "Onboards clients, creates vehicles, maps GPS devices to vehicles" },
     { name: "tenant_executive", privileges: ["read","create_reports","export_data"], scope: "tenant", remarks: "Client-side analytics; reporting only" },

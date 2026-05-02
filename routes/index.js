@@ -17,7 +17,7 @@ const platformUserRoutes = require('./platformUserRoutes');
 // const clientAuthRoutes = require('./clientAuthRoutes');
 // const clientUserRoutes = require('./clientUserRoutes');
 
-// const auditRoutes = require('./auditRoutes');
+const auditRoutes = require('./auditRoutes');
 
 // const fleetRoutes = require('./fleetRoutes');
 // const tripRoutes = require('./tripRoutes');
@@ -43,7 +43,7 @@ router.use('/api/v1/platform/users', platformUserRoutes);
 // router.use('/api/v1/client/users', clientUserRoutes);
 
 // // Audit
-// router.use('/api/v1/audit', auditRoutes);
+router.use('/api/v1/audit', auditRoutes);
 
 // // Fleet
 // router.use('/api/v1/fleet', fleetRoutes);
