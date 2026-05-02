@@ -1,0 +1,187 @@
+{
+  "info": {
+    "name": "VLTS-RBAC Full Suite-7Feb",
+    "_postman_id": "nuatnnvasys-rbac-full-suite",
+    "description": "Collection for testing Super Admin, Tenant Admin, Tenant User authentication and tenant lifecycle APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Super Admin Login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "http://localhost:3006/api/auth/superadmin/login" },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"suresh.gupta@nutantek.com\",\n  \"password\": \"nutan123\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Super Admin Refresh Token",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "http://localhost:3006/api/auth/superadmin/refresh" },
+        "body": { "mode": "raw", "raw": "{\n  \"token\": \"{{superadmin_refresh}}\"\n}" }
+      }
+    },
+    {
+      "name": "Super Admin Logout",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Authorization", "value": "Bearer {{superadmin_token}}" }],
+        "url": { "raw": "http://localhost:3006/api/auth/superadmin/logout" }
+      }
+    },
+    {
+      "name": "Super Admin Create Tenant",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{superadmin_token}}" }
+        ],
+        "url": { "raw": "http://localhost:3006/api/platform/tenants" },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tenant_id\": \"TENANT001\",\n  \"name\": \"DemoTenant\",\n  \"domain\": \"demo.tenant.com\",\n  \"admin_email\": \"tenantadmin@demo.com\",\n  \"admin_password\": \"ChangeMe123!\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Super Admin Get Tenants",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{superadmin_token}}" }],
+        "url": { "raw": "http://localhost:3006/api/platform/tenants" }
+      }
+    },
+    {
+      "name": "Super Admin Update Tenant",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{superadmin_token}}" }
+        ],
+        "url": { "raw": "http://localhost:3006/api/platform/tenants/{{tenant_id}}" },
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"UpdatedTenantName\"\n}" }
+      }
+    },
+    {
+      "name": "Super Admin Delete Tenant",
+      "request": {
+        "method": "DELETE",
+        "header": [{ "key": "Authorization", "value": "Bearer {{superadmin_token}}" }],
+        "url": { "raw": "http://localhost:3006/api/platform/tenants/{{tenant_id}}" }
+      }
+    },
+    {
+      "name": "Tenant Admin Login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "http://localhost:3006/api/auth/tenantadmin/login" },
+        "body": { "mode": "raw", "raw": "{\n  \"email\": \"tenantadmin@demo.com\",\n  \"password\": \"ChangeMe123!\"\n}" }
+      }
+    },
+    {
+      "name": "Tenant Admin Refresh Token",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "http://localhost:3006/api/auth/tenantadmin/refresh" },
+        "body": { "mode": "raw", "raw": "{\n  \"token\": \"{{tenantadmin_refresh}}\"\n}" }
+      }
+    },
+    {
+      "name": "Tenant Admin Logout",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Authorization", "value": "Bearer {{tenantadmin_token}}" }],
+        "url": { "raw": "http://localhost:3006/api/auth/tenantadmin/logout" }
+      }
+    },
+    {
+      "name": "Tenant Admin Create User",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{tenantadmin_token}}" }
+        ],
+        "url": { "raw": "http://localhost:3006/api/auth/tenantadmin/users" },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"emp_id\": \"EMP1001\",\n  \"email\": \"fleetop@demo.com\",\n  \"password\": \"UserPass123!\",\n  \"roleName\": \"fleet_operator\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Tenant Admin Get Users",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{tenantadmin_token}}" }],
+        "url": { "raw": "http://localhost:3006/api/auth/tenantadmin/users" }
+      }
+    },
+    {
+      "name": "Tenant Admin Update User",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{tenantadmin_token}}" }
+        ],
+        "url": { "raw": "http://localhost:3006/api/auth/tenantadmin/users/{{user_id}}" },
+        "body": { "mode": "raw", "raw": "{\n  \"email\": \"updatedfleetop@demo.com\"\n}" }
+      }
+    },
+    {
+      "name": "Tenant Admin Delete User",
+      "request": {
+        "method": "DELETE",
+        "header": [{ "key": "Authorization", "value": "Bearer {{tenantadmin_token}}" }],
+        "url": { "raw": "http://localhost:3006/api/auth/tenantadmin/users/{{user_id}}" }
+      }
+    },
+    {
+      "name": "Tenant User Login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "http://localhost:3006/api/auth/tenantuser/login" },
+        "body": { "mode": "raw", "raw": "{\n  \"email\": \"fleetop@demo.com\",\n  \"password\": \"UserPass123!\"\n}" }
+      }
+    },
+    {
+      "name": "Tenant User Refresh Token",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "http://localhost:3006/api/auth/tenantuser/refresh" },
+        "body": { "mode": "raw", "raw": "{\n  \"token\": \"{{tenantuser_refresh}}\"\n}" }
+      }
+    },
+    {
+      "name": "Tenant User Logout",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Authorization", "value": "Bearer {{tenantuser_token}}" }],
+        "url": { "raw": "http://localhost:3006/api/auth/tenantuser/logout" }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "superadmin_token", "value": "" },
+    { "key": "superadmin_refresh", "value": "" },
+    { "key": "tenantadmin_token", "value": "" },
+    { "key": "tenantadmin_refresh", "value": "" },
+    { "key": "tenantuser_token", "value": "" },
+    { "key": "tenantuser_refresh", "value": "" },
+    { "key": "tenant_id", "value": "" },
+    { "key": "user_id", "value": "" }
+  ]
+}
